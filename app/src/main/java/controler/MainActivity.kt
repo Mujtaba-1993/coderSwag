@@ -2,6 +2,8 @@ package controler
 
 import Adaptore.CategoryAdapter
 import Adaptore.CategoryReciclelAdapter
+import Utilities.EXTRA_CATEGORY
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -18,7 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter= CategoryReciclelAdapter(this, DataService.categories)
+        adapter= CategoryReciclelAdapter(this, DataService.categories){ category ->
+         val prodictIntent= Intent(this,ProductsActivity::class.java)
+            prodictIntent.putExtra(EXTRA_CATEGORY,category.title)
+            startActivity(prodictIntent)
+        }
         categoryyListVeiw.adapter=adapter
 
         val layoutManger = LinearLayoutManager(this)
