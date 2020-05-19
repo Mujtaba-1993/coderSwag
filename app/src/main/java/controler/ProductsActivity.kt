@@ -2,12 +2,16 @@ package controler
 
 import Adaptore.ProductAdapter
 import Utilities.EXTRA_CATEGORY
+import android.content.Intent
 import android.content.res.Configuration
-import android.media.VolumeShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+
 import com.mujtaba.coderswag.R
+import com.mujtaba.coderswag.R.*
+import kotlinx.android.synthetic.main.activity_product_detail_actvity.*
 import kotlinx.android.synthetic.main.activity_products.*
 import services.DataService
 
@@ -17,11 +21,17 @@ class ProductsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_products)
+        setContentView(layout.activity_products)
         // الكود التالي عباره عن امر بتسجيل المعلومات فEXTRA_CATEGORY
         val categoryType= intent.getStringExtra(EXTRA_CATEGORY)
         // الكود التالي نعطي الادابتر االمكان الي فيه معلوماتنا ونقوله يجيبها هنا
-        adapter= ProductAdapter(this, DataService.getProdect(categoryType))
+        adapter= ProductAdapter(this, DataService.getProdect(categoryType)){ Prodect ->
+
+            val productItem = Intent(this, ProductDetailActvity::class.java)
+            productItem.putExtra(EXTRA_CATEGORY,Prodect.Dis)
+            startActivity(productItem)
+
+        }
 
 
 

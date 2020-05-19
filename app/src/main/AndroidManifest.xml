@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="controler.ProductsActivity"></activity>
+        <activity android:name="controler.Popupactivity"
+            android:theme="@style/AppTheme.PopMe">>
+
+        </activity>
+        <activity android:name="controler.ProductDetailActvity" />
+        <activity android:name="controler.ProductDetailActvity" />
+
+
+        <activity android:name="controler.ProductsActivity" />
         <activity android:name="controler.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
